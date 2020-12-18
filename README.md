@@ -48,30 +48,30 @@ Things you may want to cover:
 | ------------- | ---------- | ---------------- |
 | product_name  | string     | null: false      |
 | text          | text       | null: false      |
-| category_id   | string     | null: false      |
-| status_id     | string     | null: false      |
-| burden_id     | string     | null: false      |
-| prefecture_id | string     | null: false      |
+| category_id   | integer    | null: false      |
+| status_id     | integer    | null: false      |
+| burden_id     | integer    | null: false      |
+| prefecture_id | integer    | null: false      |
 | price         | integer    | null: false      |
-| user_id       | references | foreign_key:true |
+| user          | references | foreign_key:true |
 
 ### Association
 
-- belongs to :users
+- belongs to :user
 - has_many :comments
-- has_one :purchases
+- has_one :purchase
 
 ## comment テーブル
 
 | Column  | Type       | Options     |
 | ------- | ---------- | ----------- |
 | text    | text       | null: false |
-| user_id | references |             |
-| item_id | references |             |
+| user    | references |             |
+| item    | references |             |
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
 
 ## deliveries テーブル
 
@@ -87,7 +87,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :purchases
+- has_one :purchase
 
 ## purchase テーブル
 
@@ -98,5 +98,5 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :deliveries
+- has_one :delivery
 - belongs_to :user, item
