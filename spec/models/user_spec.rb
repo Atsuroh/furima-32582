@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     it '重複したemailの場合保存できないこと' do
       @user.password = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password can't be blank", "Password can't be blank", "Password is too short (minimum is 6 characters)", "Password is invalid", "Password confirmation doesn't match Password"
+      expect(@user.errors.full_messages).to include "Password can't be blank", "Password can't be blank", "Password confirmation doesn't match Password"
     end
     it "passwordが空では登録できない" do
       @user.password = ""
@@ -34,8 +34,18 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
-    it 'password:半角英数混合(半角英語のみ)' do
-      @user.password = "aaaaa1"
+    it 'password:半角英語のみでは登録できない' do
+      @user.password = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+    end
+    it 'password:半角数字のみでは登録できない' do
+      @user.password = "111111"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+    end
+    it 'password:passwordとpassword_confirmationは値が同じでないと登録できない' do
+      @user.password = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
