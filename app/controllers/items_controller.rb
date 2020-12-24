@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     else
         render :edit
     end
-end
+  end
 
   private
   def item_params
