@@ -1,11 +1,9 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_a19ca7124ddd41dbcef11389"); // PAY.JPテスト公開鍵
+  Payjp.setPublicKey(""); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const formResult = document.getElementById("charge-form");
-    const formData = new FormData(formResult);
-
+    const formData = new FormData(form);
     const card = {
       number: formData.get("delivery[number]"),
       cvc: formData.get("delivery[cvc]"),
