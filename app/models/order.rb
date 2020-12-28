@@ -4,7 +4,7 @@ class Order
   
   with_options presence: true do
     validates :token
-    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'を正しく入力してください' }
+    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'Please input correctly' }
     validates :prefecture_id, numericality: {other_than: 1}
     validates :city
     validates :address
