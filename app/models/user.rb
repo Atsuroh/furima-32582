@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :nickname
   validates :birthday
   validates :email, uniqueness: {case_sensitive: false}
-  validates :password
+  validates :password,  format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/, message: "Include both letters and numbers" }
   end
 
   with_options format: {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/} do
