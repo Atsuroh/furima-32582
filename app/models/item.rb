@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping
 
   belongs_to :user
+  has_many :comments
+  has_one :purchase
   has_one_attached :image
 
   with_options presence: true do
