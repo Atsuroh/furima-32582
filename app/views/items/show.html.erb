@@ -71,7 +71,7 @@
     <div class="option">
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <h1 id="likebtn" class="likebtn">お気に入り</h1>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -82,18 +82,20 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <div id='comments' >
+      <% @comments.each do |comment| %>
+        <p><%= comment.text %></p>
+      <% end %>
+    </div>
+    <%= form_with model: [@item,@comment]  do |f| %>
+      <%= f.text_field :text %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+      <%= f.submit "コメントする" %>
+    <% end %>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">
