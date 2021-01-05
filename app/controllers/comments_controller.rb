@@ -4,21 +4,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to item_comments_path(@comment.item)
-    else
-      @item = @comment.item
-      @comments = @item.comments
-      render "items/show"
+      ActionCable.server.broadcast 'comment_channel', content: @comment
     end
-  end
-
-  def destroy
-    comment = Comment.find_by(id: params[:id], item_id: params[:item_id])
-    if comment.user.id != current_user.id
-      redirect_to item_path(comment.item)
-    end
-    comment.destroy
-    redirect_to item_path(comment.item)
   end
 
   private
