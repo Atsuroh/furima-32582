@@ -71,7 +71,7 @@
     <div class="option">
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <h1 id="likebtn" class="likebtn">お気に入り</h1>
+        <%= render partial: "likes/like" %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>

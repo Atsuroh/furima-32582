@@ -8,8 +8,13 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+  has_many :likes
   has_one :purchase
   has_one_attached :image
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 
   with_options presence: true do
     validates :image
