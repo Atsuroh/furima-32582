@@ -5,5 +5,5 @@
       <p><span>お気に入り登録: </span><%=link_to @item.likes.count, item_likes_path(@item.id), method: :post, remote: true %></p>
   <% end %>
 <% else %>
-    <p><span>お気に入り数: </span><%= item.likes.count %></p>
+    <p><span>お気に入り数: </span><%= @item.likes.count %></p>
 <% end %>
